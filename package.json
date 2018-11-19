@@ -1,0 +1,28 @@
+{
+  "name": "koa-graphql",
+  "version": "1.0.0",
+  "description": "koa graphql",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlfieriChou/koa-graphql.git"
+  },
+  "keywords": [
+    "koa",
+    "graphql"
+  ],
+  "author": "AlfieriChou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlfieriChou/koa-graphql/issues"
+  },
+  "homepage": "https://github.com/AlfieriChou/koa-graphql#readme",
+  "dependencies": {
+    "apollo-server-koa": "^2.2.2",
+    "graphql": "^14.0.2",
+    "koa": "^2.6.2"
+  }
+}
