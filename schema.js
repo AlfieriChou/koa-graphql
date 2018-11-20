@@ -1,7 +1,5 @@
-// const userTypeDefs = require('./defs/user')
 const userResolvers = require('./resolver/user')
 const { makeExecutableSchema } = require('graphql-tools')
-const _ = require('lodash')
 const glob = require('glob')
 const path = require('path')
 
