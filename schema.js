@@ -1,4 +1,3 @@
-const userResolvers = require('./resolver/user')
 const { makeExecutableSchema } = require('graphql-tools')
 const glob = require('glob')
 const path = require('path')
@@ -17,9 +16,19 @@ glob.sync('./defs/*.js').forEach((def) => {
   defs.push(require(path.resolve(def)))
 })
 
+let resolvers = []
+const files = glob.sync('./resolver/*.js')
+if (files.length === 1) {
+  resolvers = require(files[0])
+} else {
+  files.forEach(file => {
+    resolvers.push(require(path.resolve(file)))
+  })
+}
+
 const schema = makeExecutableSchema({
   typeDefs: defs,
-  resolvers: userResolvers
+  resolvers: resolvers
 })
 
 module.exports = schema
