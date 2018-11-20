@@ -1,5 +1,9 @@
-const { userResolvers, userTypeDefs } = require('./schemas/user')
+// const userTypeDefs = require('./defs/user')
+const userResolvers = require('./resolver/user')
 const { makeExecutableSchema } = require('graphql-tools')
+const _ = require('lodash')
+const glob = require('glob')
+const path = require('path')
 
 const rootTypeDefs = `
   type Query
@@ -9,9 +13,14 @@ const rootTypeDefs = `
     mutation: Mutation
   }
 `
+const defs = []
+defs.push(rootTypeDefs)
+glob.sync('./defs/*.js').forEach((def) => {
+  defs.push(require(path.resolve(def)))
+})
 
 const schema = makeExecutableSchema({
-  typeDefs: [rootTypeDefs, userTypeDefs],
+  typeDefs: defs,
   resolvers: userResolvers
 })
 

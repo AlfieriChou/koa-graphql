@@ -1,31 +1,5 @@
 const User = require('../models/user')
 
-const userTypeDefs = `
-  type User {
-    id: ID!
-    username: String!
-    phone: String!
-    description: String
-  }
-  input UserFilterInput {
-    skip: Int
-    limit: Int
-  }
-  extend type Query {
-    users(filter: UserFilterInput): [User]
-    user(id: String!): User
-  }
-  input UserInput {
-    username: String!
-    phone: String!
-    description: String
-  }
-  extend type Mutation {
-    addUser(input: UserInput!): User
-    editUser(id: String!, input: UserInput!): User
-    deleteUser(id: String!): User
-  }
-`
 const userResolvers = {
   Query: {
     users: async (_, { filter = {} }) => {
@@ -58,7 +32,4 @@ const userResolvers = {
   }
 }
 
-module.exports = {
-  userTypeDefs,
-  userResolvers
-}
+module.exports = userResolvers
