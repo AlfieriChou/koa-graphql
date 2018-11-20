@@ -8,6 +8,7 @@ const userTypeDefs = `
     description: String
   }
   input UserFilterInput {
+    skip: Int
     limit: Int
   }
   extend type Query {
