@@ -1,21 +1,31 @@
 const Koa = require('koa')
-const { ApolloServer, gql } = require('apollo-server-koa')
+const { ApolloServer } = require('apollo-server-koa')
+const { makeExecutableSchema } = require('graphql-tools')
+const mongoose = require('mongoose')
+const bodyParser = require('koa-bodyparser')
+const { userResolvers, userTypeDefs } = require('./schemas/user')
 
-const typeDefs = gql`
-  type Query {
-    hello: String
+mongoose.connect('mongodb://47.106.84.59:28017/test', { useNewUrlParser: true })
+
+const rootTypeDefs = `
+  type Query
+  type Mutation
+  schema {
+    query: Query
+    mutation: Mutation
   }
 `
 
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!'
-  }
-}
+const schema = makeExecutableSchema({
+  typeDefs: [rootTypeDefs, userTypeDefs],
+  resolvers: userResolvers
+})
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({ schema })
 
 const app = new Koa()
+app.use(bodyParser())
+
 server.applyMiddleware({ app })
 
 const port = 3000
