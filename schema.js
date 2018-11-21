@@ -1,6 +1,6 @@
 const { makeExecutableSchema } = require('graphql-tools')
-const glob = require('glob')
 const path = require('path')
+const dir = require('dir_filenames')
 
 const rootTypeDefs = `
   type Query
@@ -12,12 +12,12 @@ const rootTypeDefs = `
 `
 const defs = []
 defs.push(rootTypeDefs)
-glob.sync('./defs/*.js').forEach((def) => {
+dir('./defs/').forEach((def) => {
   defs.push(require(path.resolve(def)))
 })
 
 let resolvers = []
-const files = glob.sync('./resolver/*.js')
+const files = dir('./resolver/')
 if (files.length === 1) {
   resolvers = require(files[0])
 } else {
