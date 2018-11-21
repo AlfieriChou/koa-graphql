@@ -6,7 +6,9 @@ const userTypeDefs = `
     description: String
   }
   input UserFilterInput {
-    skip: Int
+    username: String
+    pagination: Boolean
+    page: Int
     limit: Int
   }
   extend type Query {

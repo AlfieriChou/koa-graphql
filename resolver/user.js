@@ -3,7 +3,16 @@ const User = require('../models/user')
 const userResolvers = {
   Query: {
     users: async (_, { filter = {} }) => {
-      const users = await User.find({}, null, filter)
+      const { pagination, limit, page } = filter
+      const query = {}
+      if (filter.username) query.username = new RegExp(filter.username, 'i')
+      if (pagination === true) {
+        const users = await User.find(query)
+          .limit(limit)
+          .skip(limit * (page - 1))
+        return users
+      }
+      const users = await User.find(query)
       return users
     },
     user: async (_, { id }) => {
