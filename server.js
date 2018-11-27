@@ -1,6 +1,6 @@
 const Koa = require('koa')
 const { ApolloServer } = require('apollo-server-koa')
-const schema = require('./schema')
+const schema = require('./src/schema')
 const mongoose = require('mongoose')
 const bodyParser = require('koa-bodyparser')
 

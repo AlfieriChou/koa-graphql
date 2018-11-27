@@ -23,6 +23,7 @@
   "homepage": "https://github.com/AlfieriChou/koa-graphql#readme",
   "dependencies": {
     "apollo-server-koa": "^2.2.2",
+    "app-root-path": "^2.1.0",
     "bcrypt": "^3.0.2",
     "dir_filenames": "^1.0.6",
     "graphql": "^14.0.2",
