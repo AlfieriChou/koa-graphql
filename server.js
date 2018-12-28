@@ -6,16 +6,16 @@ const bodyParser = require('koa-bodyparser')
 const jwt = require('koa-jwt')
 const router = require('./src/router')
 
-mongoose.connect('mongodb://47.106.84.59:28017/test', { useNewUrlParser: true })
+mongoose.connect('mongodb://127.0.0.1:27018/test', { useNewUrlParser: true })
 
 const app = new Koa()
 app.use(bodyParser())
-app.use(jwt({
-  secret: 'koa-graphql',
-  credentialsRequired: false
-}).unless({
-  path: [/\/login/, /\/signup/]
-}))
+// app.use(jwt({
+//   secret: 'koa-graphql',
+//   credentialsRequired: false
+// }).unless({
+//   path: [/\/login/, /\/signup/]
+// }))
 const server = new ApolloServer({ schema })
 server.applyMiddleware({ app })
 

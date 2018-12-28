@@ -35,7 +35,9 @@
     "koa-router": "^7.4.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
-    "mongoose": "^5.3.12"
+    "mongoose": "^5.3.12",
+    "shortid": "^2.2.14",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "nodemon": "^1.18.6"
