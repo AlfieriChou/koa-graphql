@@ -3,6 +3,7 @@ const { ApolloServer } = require('apollo-server-koa')
 const schema = require('./src/schema')
 const mongoose = require('mongoose')
 const bodyParser = require('koa-bodyparser')
+const logger = require('koa-logger')
 const jwt = require('koa-jwt')
 const router = require('./src/router')
 
@@ -16,6 +17,7 @@ app.use(jwt({
 }).unless({
   path: [/\/login/, /\/signup/]
 }))
+app.use(logger())
 const server = new ApolloServer({ schema })
 server.applyMiddleware({ app })
 
