@@ -9,4 +9,4 @@ class ShortController {
   }
 }
 
-module.exports = new ShortController()
+module.exports = ShortController

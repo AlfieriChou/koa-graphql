@@ -7,5 +7,5 @@ _.remove(files, n => {
 })
 files.map(item => {
   let name = item.split('/').pop().replace(/\.\w+$/, '')
-  exports[name] = require(item)
+  exports[name] = require(item).prototype
 })
